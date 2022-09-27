@@ -11,7 +11,7 @@ class Game
 
   def initialize
     @game_over = false
-    @secret_code = '1234'
+    @@secret_code = '1234'
     play
   end
 
@@ -22,13 +22,12 @@ class Game
     player.guess
   end
 
-  def check_guess(guess)
-    puts @turns
+  def self.check_guess(guess, turns)
     if code_broken?(guess)
       @game_over = true
       puts 'You cracked the code! You win!'
       reset_game
-    elsif @turns == 13
+    elsif turns == 13
       @game_over = true
       puts 'Game Over - You ran out of turns.'
       reset_game
@@ -36,11 +35,18 @@ class Game
     end
   end
 
-  def code_broken?(guess)
-    guess == @secret_code
+  def self.code_broken?(guess)
+    guess == @@secret_code
   end
 
-  def reset_game
-    puts 'enter reset game logic here....'
+  def self.reset_game
+    puts "Do You want to play again? (y/n)"
+    answer = gets.chomp.upcase
+    play_again = case answer
+    when 'Y' then Game.new
+    when 'N' 
+      puts "BYE"
+      exit
+    end
   end
 end
