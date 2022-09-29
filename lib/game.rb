@@ -1,52 +1,42 @@
 # frozen_string_literal: true
 
-require_relative 'instructions'
-require_relative 'human'
+# require_relative 'instructions'
+# require_relative 'codebreaker'
+# require_relative 'logic'
 
-# Handles gameplay procedures
-class Game
-  attr_reader :game_over
+# # Starts and ends the game, including replays
+# class Game
+#   attr_accessor :name, :game_over
 
-  include Instructions
+#   include Instructions
 
-  def initialize
-    @game_over = false
-    @@secret_code = '1234'
-    play
-  end
+#   def initialize(name)
+#     @name = name
+#     @game_over = false
+#     puts instructions
+#     start_game
+#   end
 
-  def play
-    puts instructions
-    # Make a new human class object
-    player = Human.new
-    player.guess
-  end
+#   def start_game
+#     # Assumes human will play role of breaker for now but
+#     # may need to add functionality for computer AI
+#     game_logic = Logic.new
+#   end
 
-  def self.check_guess(guess, turns)
-    if code_broken?(guess)
-      @game_over = true
-      puts 'You cracked the code! You win!'
-      reset_game
-    elsif turns == 13
-      @game_over = true
-      puts 'Game Over - You ran out of turns.'
-      reset_game
-    else return false
-    end
-  end
+#   def end_game(condition)
+#     game_over = true
+#     condition == 1 ? "you win" : "you lose"
+#     replay
+#   end
 
-  def self.code_broken?(guess)
-    guess == @@secret_code
-  end
-
-  def self.reset_game
-    puts "Do You want to play again? (y/n)"
-    answer = gets.chomp.upcase
-    play_again = case answer
-    when 'Y' then Game.new
-    when 'N' 
-      puts "BYE"
-      exit
-    end
-  end
-end
+#   def replay
+#     puts 'Do You want to play again? (y/n)'
+#     answer = gets.chomp.upcase
+#     play_again = case answer
+#     when 'Y' then Game.new
+#     when 'N' 
+#       puts "BYE"
+#       exit
+#     end
+#   end
+# end

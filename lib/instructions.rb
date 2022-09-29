@@ -11,17 +11,16 @@ module Instructions
 
       You are tasked with cracking the 4-color code that the computer will be creating from the following list:
 
-        1 - Red (R)
-        2 - Orange (O)
-        3 - Yellow (Y)
-        4 - Green (G)
-        5 - Blue (B)
-        6 - Violet (V)
+        1 - Red
+        2 - Orange
+        3 - Yellow
+        4 - Green
+        5 - Blue
+        6 - Violet
 
         - Each color can be reused.
-        - You will have 12 attempts to solve the code and win the game. For each attempt, you will create a
-        4-color guess by inputting either the color (e.g. 'red'), the color shorthand code (e.g. 'R' for red),
-        or the number shorthand for each color (e.g. '1' for red).
+        - You will have 12 attempts to solve the code and win the game. For each attempt, you will input a
+        4-digit code representing the colors of your guess.
         - Once you have completed a guess, the computer will provide CLUES for how close your guess is to
         the solution. A hollow circle indicates that your code contains one of the correct colors, but
         in the wrong place. A solid circle indicates there is a correct color in the correct place.
