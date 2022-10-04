@@ -2,6 +2,7 @@
 
 # require_relative 'instructions'
 # require_relative 'codebreaker'
+# require_relative 'codemaker'
 # require_relative 'logic'
 
 # # Starts and ends the game, including replays

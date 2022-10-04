@@ -2,19 +2,20 @@
 
 # require_relative 'game'
 # require_relative 'logic'
-# require_relative 'codebreaker'
+require_relative 'codebreaker'
+require_relative 'codemaker'
 require_relative 'instructions'
 
 # Starts and ends the game, including replays
 class Game
-  attr_reader :secret_code
+  attr_reader :maker
   attr_accessor :game_over, :breaker, :turns
 
   include Instructions
 
   def initialize
     @game_over = false
-    @secret_code = Codemaker.new
+    @maker = Codemaker.new
     puts instructions
     play
   end
@@ -30,7 +31,12 @@ class Game
 
   def end_game(condition)
     game_over = true
-    condition == 1 ? (puts 'You win!!') : (puts 'You ran out of turns')
+    if condition == 1
+      puts 'You win!!'
+      puts "The secret code was:  #{maker.end_game}"
+    else
+      puts 'You ran out of turns'
+    end
     replay
   end
 
@@ -54,58 +60,17 @@ class Game
     if code_broken?(guess_attempt)
       end_game(1)
       true
-    elsif turns == 4
+    elsif turns == 12
       end_game(0)
       true
-    else false
+    else 
+      p maker.get_clues(guess_attempt)
+      false
     end
   end
 
   def code_broken?(guess)
-    guess == secret_code
-  end
-end
-
-# Codebreaker class - using human input or computer AI, takes guesses at code.
-class Codebreaker
-  def guess
-    guess_attempt = ''
-    until validate_guess(guess_attempt)
-      print 'Enter guess by entering 4 consecutive numbers(no spaces): '
-      guess_attempt = gets.chomp.to_s
-    end
-    guess_attempt
-  end
-
-  private
-
-  def validate_guess(input)
-    # regex match for only a 4-digit input with digits between 1 and 6.
-    input.match(/^[1-6]{4}$/) ? true : false
-  end
-end
-
-# Codemaker class - Either has a human or computer select provide clues about secret code
-class Codemaker
-  #TODO: add human selection option
-  def initialize
-    generate_code
-    clues('1234')
-  end
-
-  def clues(guess)
-    "evaluating guess..."
-    for i in 0..3
-      p i 
-    end
-  end
-
-
-  private
-
-  def generate_code
-    code_array = [rand(1..6), rand(1..6), rand(1..6), rand(1..6)]
-    p code_array.join('')
+    guess == maker.code
   end
 end
 

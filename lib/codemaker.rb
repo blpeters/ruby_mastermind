@@ -8,21 +8,14 @@ class Codemaker
 
   # check out batmangoo's solution
   def get_clues(guess)
-    guess_arr = guess.split('')
-    code_arr = code.split('')
-    guess_arr.each_with_index { |color, index|
-      if color == code_arr[index]
-        guess_arr[index] = 'C'
-        code_arr[index] = 'C'
-      elsif code_arr.include?(color)
-        code_arr[code_arr.find_index(color)] = 'P'
-        guess_arr[index] = 'P'
-      elsif !code_arr.include?(color)
-        guess_arr[index] = 'X'
-      end
-    }
-    guess_arr.delete('X')
-    clues = guess_arr.sort
+    black_pegs_result = get_black_pegs(guess)
+    clues_result = get_white_pegs(black_pegs_result)
+    clues_result.delete('X')
+    clues_result.sort
+  end
+
+  def end_game
+    reveal_code
   end
 
   private
@@ -31,6 +24,39 @@ class Codemaker
     code_array = [rand(1..6), rand(1..6), rand(1..6), rand(1..6)]
     p code_array.join('')
   end
+
+  # Determine absolutely correct (C) colors
+  def get_black_pegs(guess)
+    black_peg_arr = guess.split('')
+    code_arr = code.split('')
+    black_peg_arr.each_with_index { |color, index|
+      if color == code_arr[index]
+        black_peg_arr[index] = 'C'
+        code_arr[index] = 'C'
+      end
+      }
+    [code_arr, black_peg_arr]
+  end
+
+  # Determine Partially correct (P) colors
+  def get_white_pegs(arr)
+    code_arr = arr[0]
+    clues_arr = arr[1]
+    clues_arr.each_with_index { |color, index|
+      if color =~ /[1-6]/ && code_arr.include?(color)
+        code_arr[code_arr.find_index(color)] = 'P'
+        clues_arr[index] = 'P'
+      elsif !code_arr.include?(color)
+        clues_arr[index] = 'X'
+      end
+    }
+    clues_arr
+  end
+
+  def reveal_code
+    @code
+  end
 end
-maker = Codemaker.new
-p maker.get_clues('5613')
+
+# maker = Codemaker.new
+# p maker.get_clues('2121')
