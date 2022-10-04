@@ -14,7 +14,7 @@ class Game
 
   def initialize
     @game_over = false
-    @secret_code = '1234' # Placeholder - will need a codemaker class.
+    @secret_code = Codemaker.new
     puts instructions
     play
   end
@@ -54,7 +54,7 @@ class Game
     if code_broken?(guess_attempt)
       end_game(1)
       true
-    elsif turns == 12
+    elsif turns == 4
       end_game(0)
       true
     else false
@@ -85,4 +85,29 @@ class Codebreaker
   end
 end
 
+# Codemaker class - Either has a human or computer select provide clues about secret code
+class Codemaker
+  #TODO: add human selection option
+  def initialize
+    generate_code
+    clues('1234')
+  end
+
+  def clues(guess)
+    "evaluating guess..."
+    for i in 0..3
+      p i 
+    end
+  end
+
+
+  private
+
+  def generate_code
+    code_array = [rand(1..6), rand(1..6), rand(1..6), rand(1..6)]
+    p code_array.join('')
+  end
+end
+
 game = Game.new
+
