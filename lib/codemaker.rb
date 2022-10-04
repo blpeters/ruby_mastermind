@@ -1,20 +1,28 @@
 # Codemaker class - Either has a human or computer select provide clues about secret code
 class Codemaker
   attr_reader :code
-  #TODO: add human selection option
+
   def initialize
-    @code = '3453' # generate_code
+    @code = generate_code
   end
 
-  def clues(guess)
-    p get_black_pegs(guess)
-  end
-
-  def get_black_pegs(guess)
-    secret_code_arr = code.split('')
-    secret_code_arr.each_with_index {|color, index|
-      secret_code_arr[index] = 'C' if color == guess[index] # C stands for correct guess
+  # check out batmangoo's solution
+  def get_clues(guess)
+    guess_arr = guess.split('')
+    code_arr = code.split('')
+    guess_arr.each_with_index { |color, index|
+      if color == code_arr[index]
+        guess_arr[index] = 'C'
+        code_arr[index] = 'C'
+      elsif code_arr.include?(color)
+        code_arr[code_arr.find_index(color)] = 'P'
+        guess_arr[index] = 'P'
+      elsif !code_arr.include?(color)
+        guess_arr[index] = 'X'
+      end
     }
+    guess_arr.delete('X')
+    clues = guess_arr.sort
   end
 
   private
@@ -25,4 +33,4 @@ class Codemaker
   end
 end
 maker = Codemaker.new
-maker.clues('1151')
+p maker.get_clues('5613')
