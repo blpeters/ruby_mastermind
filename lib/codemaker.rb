@@ -54,7 +54,9 @@ class Codemaker
   end
 
   def reveal_code
-    @code
+    puts '-------------------------------'
+    puts "The secret code was: #{@code}"
+    puts '-------------------------------'
   end
 end
 

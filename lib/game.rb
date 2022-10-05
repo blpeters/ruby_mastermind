@@ -29,9 +29,10 @@ class Game
     game_over = true
     if condition == 1
       puts 'You win!!'
-      puts "The secret code was:  #{maker.end_game}"
+      maker.end_game
     else
       puts 'You ran out of turns'
+      maker.end_game
     end
     replay
   end
@@ -48,8 +49,8 @@ class Game
   end
  
   def get_guess
-    p @current_guess = breaker.guess
-    @current_guess = check_guess(@current_guess)
+    puts "\nThe current guess is: #{@current_guess = breaker.guess}\n"
+    check_guess(@current_guess)
   end
 
   def check_guess(guess_attempt)
@@ -60,7 +61,7 @@ class Game
       end_game(0)
       true
     else 
-      p maker.get_clues(guess_attempt)
+      puts "\nClues: #{maker.get_clues(guess_attempt).join(' ')}\n\n"
       false
     end
   end
