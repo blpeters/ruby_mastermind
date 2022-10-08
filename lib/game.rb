@@ -1,19 +1,19 @@
 # frozen_string_literal: true
 
-require_relative 'instructions'
 require_relative 'string_colors'
+require_relative 'display'
 
 # Starts and ends the game, including replays
 class Game
   attr_reader :maker, :breaker
-  attr_accessor :game_over, :turns
-
-  include Instructions
+  attr_accessor :game_over, :turns, :display
+  
   using StringColors
+  include Display
 
   def initialize
     @game_over = false
-    puts instructions
+    show_instructions
     play
   end
 
@@ -30,7 +30,7 @@ class Game
   def end_game(condition)
     game_over = true
     if condition == 1
-      puts 'You win!!'
+      win
       maker.end_game
     else
       puts 'You ran out of turns'
@@ -51,7 +51,8 @@ class Game
   end
  
   def get_guess
-    puts "\nThe current guess is: #{@current_guess = breaker.guess}\n"
+    @current_guess = breaker.guess
+    display_guess(@current_guess)
     check_guess(@current_guess)
   end
 
@@ -63,7 +64,8 @@ class Game
       end_game(0)
       true
     else 
-      puts "\nClues: #{maker.get_clues(guess_attempt).join(' ')}\n\n"
+      display_clues(maker.get_clues(guess_attempt))
+      # puts "\nClues: #{maker.get_clues(guess_attempt).join(' ')}\n\n"
       false
     end
   end

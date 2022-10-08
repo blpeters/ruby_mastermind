@@ -1,6 +1,12 @@
+# frozen_string_literal: true
+
+require_relative 'display'
+
 # Codemaker class - Either has a human or computer select provide clues about secret code
 class Codemaker
   attr_reader :code
+
+  include Display
 
   def initialize
     @code = generate_code
@@ -22,7 +28,7 @@ class Codemaker
 
   def generate_code
     code_array = [rand(1..6), rand(1..6), rand(1..6), rand(1..6)]
-    p code_array.join('')
+    code_array.join('')
   end
 
   # Determine absolutely correct (C) colors
@@ -54,11 +60,6 @@ class Codemaker
   end
 
   def reveal_code
-    puts '-------------------------------'
-    puts "The secret code was: #{@code}"
-    puts '-------------------------------'
+    display_code(@code)
   end
 end
-
-# maker = Codemaker.new
-# p maker.get_clues('2121')
