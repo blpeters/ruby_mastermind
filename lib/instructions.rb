@@ -1,9 +1,14 @@
 # frozen_string_literal: true
 
+require_relative 'string_colors'
+
 # Text instructions for playing the Mastermind game.
 # For now,write instructions for the human to guess a computer generated
 # solution only. Add a computer-guessing version later
 module Instructions
+  
+  using StringColors
+
   def instructions
     <<~HEREDOC
 
@@ -11,12 +16,7 @@ module Instructions
 
       You are tasked with cracking the 4-color code that the computer will be creating from the following list:
 
-        1 - Red
-        2 - Orange
-        3 - Yellow
-        4 - Green
-        5 - Blue
-        6 - Violet
+        #{'  1 - Red  '.background_color(:red)} #{'  2 - Orange  '.background_color(:orange)} #{'  3 - Yellow  '.background_color(:yellow)} #{'  4 - Green  '.background_color(:green)} #{'  5 - Blue  '.background_color(:blue)} #{'  6 - Violet  '.background_color(:violet)}
 
         - Each color can be reused.
         - You will have 12 attempts to solve the code and win the game. For each attempt, you will input a

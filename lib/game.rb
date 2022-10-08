@@ -1,13 +1,15 @@
 # frozen_string_literal: true
-# Starts and ends the game, including replays
 
 require_relative 'instructions'
+require_relative 'string_colors'
 
+# Starts and ends the game, including replays
 class Game
   attr_reader :maker, :breaker
   attr_accessor :game_over, :turns
 
   include Instructions
+  using StringColors
 
   def initialize
     @game_over = false
