@@ -11,20 +11,20 @@ module Display
 
       Welcome to Mastermind!
 
-      You are tasked with cracking the 4-color code that the computer will be creating from the following list:
+      In this game, the codebreaker is tasked with cracking the 4-color code that the codemaker creates from the following colors:
 
         #{'  1 - Red  '.background_color(:red)} #{'  2 - Orange  '.background_color(:orange)} #{'  3 - Yellow  '.background_color(:yellow)} #{'  4 - Green  '.background_color(:green)} #{'  5 - Blue  '.background_color(:blue)} #{'  6 - Violet  '.background_color(:violet)}
 
         - Each color can be reused.
-        - You will have 12 attempts to solve the code and win the game. For each attempt, you will input a
-          4-digit code representing the colors of your guess.
-        - Once you have completed a guess, the computer will provide the following clues in no particular order:
+        - The codebreaker have 12 attempts to solve the code and win the game. For each attempt, the codebreaker will input a
+          4-digit code representing the colors of their guess.
+        - Once the codebreaker provides a guess, the codemaker will provide the following clues in no particular order:
 
         **************************************************************************************************************
           \u25cc - Incorrect guess.  |   \u25cb - Correct color, but incorrect place  |   \u25cf - Correct color, correct place
         **************************************************************************************************************
 
-        - Continue guessing until you win (4 solid circles) or the computer wins after 12 failed guesses.
+        - The codebreaker continues guessing until they win (4 solid circles) or the codemaker wins after 12 failed guesses.
 
         LET'S PLAY!
 

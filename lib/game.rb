@@ -14,12 +14,24 @@ class Game
   def initialize
     @game_over = false
     show_instructions
-    play
+    format = choose_format
+    play(format)
   end
 
-  def play
-    @maker = Codemaker.new
-    @breaker = Codebreaker.new
+  def choose_format
+    puts 'Please select if you would like to play as the Codemaker(1) or Codebreaker(2)'
+    print 'Choose 1 for Codemaker or 2 for Codebreaker: '
+    user_input = gets.chomp
+    until user_input.match?(/[1,2]/)
+      print "invalid input. Choose 1 or 2: "
+      user_input = gets.chomp
+    end
+    user_input.to_i
+  end
+
+  def play(format)
+    @maker = Codemaker.new(format)
+    @breaker = Codebreaker.new(format)
     @turns = 1
     until game_over
       get_guess

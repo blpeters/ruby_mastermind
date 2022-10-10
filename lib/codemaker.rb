@@ -4,15 +4,15 @@ require_relative 'display'
 
 # Codemaker class - Either has a human or computer select provide clues about secret code
 class Codemaker
-  attr_reader :code
+  attr_reader :code, :format
 
   include Display
 
-  def initialize
+  def initialize(format)
     @code = generate_code
+    @format = format
   end
 
-  # check out batmangoo's solution
   def get_clues(guess)
     black_pegs_result = get_black_pegs(guess)
     clues_result = get_white_pegs(black_pegs_result)

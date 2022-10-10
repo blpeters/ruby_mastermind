@@ -2,6 +2,12 @@
 
 # Codebreaker class - using human input or computer AI, takes guesses at code.
 class Codebreaker
+
+  def initialize(format)
+    @format = format
+    p format
+  end
+  
   def guess
     guess_attempt = ''
     until validate_guess(guess_attempt)
