@@ -9,8 +9,8 @@ class Codemaker
   include Display
 
   def initialize(format)
-    @code = generate_code
     @format = format
+    @code = generate_code(format)
   end
 
   def get_clues(guess)
@@ -26,9 +26,16 @@ class Codemaker
 
   private
 
-  def generate_code
-    code_array = [rand(1..6), rand(1..6), rand(1..6), rand(1..6)]
-    code_array.join('')
+  def generate_code(format)
+    case format
+    when 1
+      print 'Please select your 4-color secret code: '
+      gets.chomp
+    when 2
+      code_array = [rand(1..6), rand(1..6), rand(1..6), rand(1..6)]
+      code_array.join('')
+    else p 'No valid game format detected...'
+    end
   end
 
   # Determine absolutely correct (C) colors

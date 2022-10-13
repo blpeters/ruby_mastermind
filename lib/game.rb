@@ -5,8 +5,7 @@ require_relative 'display'
 
 # Starts and ends the game, including replays
 class Game
-  attr_reader :maker, :breaker
-  attr_accessor :game_over, :turns, :display
+  attr_accessor :game_over, :turns, :display, :breaker, :maker, :format
   
   using StringColors
   include Display
@@ -14,7 +13,7 @@ class Game
   def initialize
     @game_over = false
     show_instructions
-    format = choose_format
+    @format = choose_format
     play(format)
   end
 
@@ -76,8 +75,9 @@ class Game
       end_game(0)
       true
     else 
-      display_clues(maker.get_clues(guess_attempt))
-      # puts "\nClues: #{maker.get_clues(guess_attempt).join(' ')}\n\n"
+      clues = maker.get_clues(guess_attempt)
+      display_clues(clues)
+      breaker.store_clues(clues)
       false
     end
   end
