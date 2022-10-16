@@ -18,14 +18,16 @@ class Game
   end
 
   def choose_format
-    puts 'Please select if you would like to play as the Codemaker(1) or Codebreaker(2)'
-    print 'Choose 1 for Codemaker or 2 for Codebreaker: '
-    user_input = gets.chomp
-    until user_input.match?(/[1,2]/)
-      print "invalid input. Choose 1 or 2: "
-      user_input = gets.chomp
-    end
-    user_input.to_i
+    2
+    #TODO: create AI for computer codebreaker (options for computer codebreaker disabled below)
+    # puts 'Please select if you would like to play as the Codemaker(1) or Codebreaker(2)'
+    # print 'Choose 1 for Codemaker or 2 for Codebreaker: '
+    # user_input = gets.chomp
+    # until user_input.match?(/[1,2]/)
+    #   print "invalid input. Choose 1 or 2: "
+    #   user_input = gets.chomp
+    # end
+    # user_input.to_i
   end
 
   def play(format)
