@@ -4,7 +4,7 @@ This is a Ruby-based version of the 2-player logic game, Mastermind.
 
 It's played directly in the console using numerical values to represent colors.
 
-[Live Preview](https://replit.com/@blpeters/RubyMastermind)
+[Live Preview](https://replit.com/@blpeters/RubyMastermind) - Requires forking the replit
 
 The game is played with one player as the code-maker and the other as a
 code-breaker. The goal of the code-breaker is to determine within 12 turns
